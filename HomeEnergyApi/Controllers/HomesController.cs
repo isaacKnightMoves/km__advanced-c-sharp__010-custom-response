@@ -26,6 +26,24 @@ namespace HomeEnergyUsageApi.Controllers
             return NotFound();
         }
 
+        [HttpGet("HackAPI")]
+        public IActionResult GetHack()
+        {
+            try
+            {
+                throw new Exception("Please don't try to hack me...");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    Status = 500,
+                    Error = "Internal Server Error",
+                    Message = ex.Message,
+                });
+            }
+        }
+
         [HttpPost]
         public IActionResult CreateHome([FromBody] Home home)
         {
